@@ -1,6 +1,13 @@
 import { Hash } from "https://deno.land/x/checksum/mod.ts";
 
 /**
+ * @description allowed options list 
+ * @see https://en.gravatar.com/site/implement/images/
+ */
+
+const gravatarOptionsList = ['s', 'size', 'd', 'default', 'f', 'forcedefault', 'r', 'rating'];
+
+/**
  * 
  * @param email string The email you want to hash
  * @returns hashed email by md5 method
@@ -14,8 +21,8 @@ function emailHash(email: string) {
  * 
  * @param email string
  * @param options object gravatar options like default image an size ..
- * @see https://en.gravatar.com/site/implement/images/nnnnnn,,nbbbbb£r''' '''
- * @returns
+ * @see https://en.gravatar.com/site/implement/images/
+ * @returns Gravatar full url 
  */
 
 export function getGravatarUrl(email:string, options?:any) {
@@ -25,17 +32,24 @@ export function getGravatarUrl(email:string, options?:any) {
     // the Gravatar option adding
     if (options) {
         let optionsParams:string = Object.keys(options).map(key => {
+            // Filter the options from not allowed ones
+            if(!gravatarOptionsList.includes(key)){
+                return;
+            }
 
+            // Convert the options to url parameters
             if (key === 'default') {
                 return key + '=' + encodeURI(options[key])
             }else{
                 return key + '=' + options[key]
             }
         }).join('&');
-        gravatarUrl+= '?' + optionsParams
+
+        // Add gravatar option as parameters to url if there is
+        gravatarUrl += (optionsParams) ? '?' + optionsParams : ''
     }
 
-    // full gavatar url
+    // full gravatar url
     return gravatarUrl;
 }
 
