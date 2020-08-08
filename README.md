@@ -6,7 +6,7 @@ is simple module for deno It helps you to generate Gravatar (Globally Recognized
 ```js
 import { getGravatarUrl } from "https://deno.land/x/gravatar/mod.ts";
 
-// Pass the email you want check it as argument
+// Pass the email you of Gravatar user
 console.log(getGravatarUrl('moncefplastin07@gmail.com')) // https://www.gravatar.com/avatar/ea52ed86c481ca2816b8403acdbc9169
 
 
@@ -50,3 +50,5 @@ import { getGravatarProfileUrl } from "https://deno.land/x/gravatar/mod.ts";
 console.log(getGravatarProfileUrl('moncefplastin07@gmail.com')) // https://www.gravatar.com/ea52ed86c481ca2816b8403acdbc9169 (my profile in Gravatar)
 
 ```
+
+### for more options you can see Gravatr Docs Frome [Her](https://en.gravatar.com/site/implement/images/)
